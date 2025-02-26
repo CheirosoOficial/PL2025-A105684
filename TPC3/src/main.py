@@ -67,12 +67,16 @@ def link_md_html(line):
 
 def convert_md_html(filename):
     line = open_file(filename)
-    after_header_proc = header_md_html(line)
-    after_font_proc = font_md_html(after_header_proc)
-    after_link_proc = link_md_html(after_font_proc)
+    list_lines = re.split('\n', line)
+    lineProc = " "
+    for line in list_lines:
+        after_header_proc = header_md_html(line)
+        after_font_proc = font_md_html(after_header_proc)
+        lineProc += after_font_proc + "\n"
+    after_link_proc = link_md_html(lineProc)
     finished = list_md_html(after_link_proc)
 
-    file_message = "<!DOCTYPE html>\n<html lang=\"en\">\n<body>" + finished + "\n</body>\n</html>"
+    file_message = "<!DOCTYPE html>\n<html lang=\"en\">\n<meta charset=\"utf-8\">\n<body>" + finished + "\n</body>\n</html>"
     f = open("src/result.html", 'w+', encoding='utf-8')
     f.write(file_message)
 

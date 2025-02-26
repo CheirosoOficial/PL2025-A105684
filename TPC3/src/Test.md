@@ -1,6 +1,6 @@
 # Texto Qualquer
 
-Este é um **relatório simples** para teste de conversor de .md para .html
+Este é um **relatório simples** para teste de **conversor de .md para .html
 
 ## Introdução
 O objetivo deste relatório é apresentar a estrutura e os resultados obtidos com o processamento do dataset.
@@ -13,4 +13,5 @@ O objetivo deste relatório é apresentar a estrutura e os resultados obtidos co
 
 Para mais informações, visite [este link](https://www.example.com).
 
- Como se vê na imagem seguinte: ![imagem dum coelho](http://www.coellho.com)
+
+Como se vê na imagem seguinte: ![imagem dum coelho](http://www.coellho.com)
