@@ -67,10 +67,11 @@ def period_pieces_dict(map):
 
 
 # Imprimir Resultados
-csv_data = convert_csv_to_list("obras.csv")
+csv_data = convert_csv_to_list("teste_3.csv")
+print("Resultado da Leitura:")
 print(json.dumps(csv_data, indent=2, ensure_ascii=False))
-print("Length of list: " + str(len(csv_data["compositor"])))
 
+print("\n\nResultado das Queries:")
 print(list_alfabetic(csv_data))
 print(period_pieces(csv_data))
 print(json.dumps(period_pieces_dict(csv_data), indent=2, ensure_ascii=False))
