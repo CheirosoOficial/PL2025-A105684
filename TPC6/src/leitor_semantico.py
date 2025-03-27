@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from calc_lex import tokens
+from leitor_lexico import tokens
 
 def p_operacao_grau1_1(p):
     """ grau1  : grau2 """

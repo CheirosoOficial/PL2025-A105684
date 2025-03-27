@@ -1,0 +1,245 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> grau1
+Rule 1     grau1 -> grau2
+Rule 2     grau1 -> grau1 ADD grau2
+Rule 3     grau1 -> grau1 SUB grau2
+Rule 4     grau2 -> grau3
+Rule 5     grau2 -> grau2 MULT grau3
+Rule 6     grau2 -> grau2 DIV grau3
+Rule 7     grau3 -> NUMBER
+Rule 8     grau3 -> AP grau1 FP
+
+Terminals, with rules where they appear
+
+ADD                  : 2
+AP                   : 8
+DIV                  : 6
+FP                   : 8
+MULT                 : 5
+NUMBER               : 7
+SUB                  : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+grau1                : 2 3 8 0
+grau2                : 1 2 3 5 6
+grau3                : 4 5 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . grau1
+    (1) grau1 -> . grau2
+    (2) grau1 -> . grau1 ADD grau2
+    (3) grau1 -> . grau1 SUB grau2
+    (4) grau2 -> . grau3
+    (5) grau2 -> . grau2 MULT grau3
+    (6) grau2 -> . grau2 DIV grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau1                          shift and go to state 1
+    grau2                          shift and go to state 2
+    grau3                          shift and go to state 3
+
+state 1
+
+    (0) S' -> grau1 .
+    (2) grau1 -> grau1 . ADD grau2
+    (3) grau1 -> grau1 . SUB grau2
+
+    ADD             shift and go to state 6
+    SUB             shift and go to state 7
+
+
+state 2
+
+    (1) grau1 -> grau2 .
+    (5) grau2 -> grau2 . MULT grau3
+    (6) grau2 -> grau2 . DIV grau3
+
+    ADD             reduce using rule 1 (grau1 -> grau2 .)
+    SUB             reduce using rule 1 (grau1 -> grau2 .)
+    $end            reduce using rule 1 (grau1 -> grau2 .)
+    FP              reduce using rule 1 (grau1 -> grau2 .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 3
+
+    (4) grau2 -> grau3 .
+
+    MULT            reduce using rule 4 (grau2 -> grau3 .)
+    DIV             reduce using rule 4 (grau2 -> grau3 .)
+    ADD             reduce using rule 4 (grau2 -> grau3 .)
+    SUB             reduce using rule 4 (grau2 -> grau3 .)
+    $end            reduce using rule 4 (grau2 -> grau3 .)
+    FP              reduce using rule 4 (grau2 -> grau3 .)
+
+
+state 4
+
+    (7) grau3 -> NUMBER .
+
+    MULT            reduce using rule 7 (grau3 -> NUMBER .)
+    DIV             reduce using rule 7 (grau3 -> NUMBER .)
+    ADD             reduce using rule 7 (grau3 -> NUMBER .)
+    SUB             reduce using rule 7 (grau3 -> NUMBER .)
+    $end            reduce using rule 7 (grau3 -> NUMBER .)
+    FP              reduce using rule 7 (grau3 -> NUMBER .)
+
+
+state 5
+
+    (8) grau3 -> AP . grau1 FP
+    (1) grau1 -> . grau2
+    (2) grau1 -> . grau1 ADD grau2
+    (3) grau1 -> . grau1 SUB grau2
+    (4) grau2 -> . grau3
+    (5) grau2 -> . grau2 MULT grau3
+    (6) grau2 -> . grau2 DIV grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau1                          shift and go to state 10
+    grau2                          shift and go to state 2
+    grau3                          shift and go to state 3
+
+state 6
+
+    (2) grau1 -> grau1 ADD . grau2
+    (4) grau2 -> . grau3
+    (5) grau2 -> . grau2 MULT grau3
+    (6) grau2 -> . grau2 DIV grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau2                          shift and go to state 11
+    grau3                          shift and go to state 3
+
+state 7
+
+    (3) grau1 -> grau1 SUB . grau2
+    (4) grau2 -> . grau3
+    (5) grau2 -> . grau2 MULT grau3
+    (6) grau2 -> . grau2 DIV grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau2                          shift and go to state 12
+    grau3                          shift and go to state 3
+
+state 8
+
+    (5) grau2 -> grau2 MULT . grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau3                          shift and go to state 13
+
+state 9
+
+    (6) grau2 -> grau2 DIV . grau3
+    (7) grau3 -> . NUMBER
+    (8) grau3 -> . AP grau1 FP
+
+    NUMBER          shift and go to state 4
+    AP              shift and go to state 5
+
+    grau3                          shift and go to state 14
+
+state 10
+
+    (8) grau3 -> AP grau1 . FP
+    (2) grau1 -> grau1 . ADD grau2
+    (3) grau1 -> grau1 . SUB grau2
+
+    FP              shift and go to state 15
+    ADD             shift and go to state 6
+    SUB             shift and go to state 7
+
+
+state 11
+
+    (2) grau1 -> grau1 ADD grau2 .
+    (5) grau2 -> grau2 . MULT grau3
+    (6) grau2 -> grau2 . DIV grau3
+
+    ADD             reduce using rule 2 (grau1 -> grau1 ADD grau2 .)
+    SUB             reduce using rule 2 (grau1 -> grau1 ADD grau2 .)
+    $end            reduce using rule 2 (grau1 -> grau1 ADD grau2 .)
+    FP              reduce using rule 2 (grau1 -> grau1 ADD grau2 .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 12
+
+    (3) grau1 -> grau1 SUB grau2 .
+    (5) grau2 -> grau2 . MULT grau3
+    (6) grau2 -> grau2 . DIV grau3
+
+    ADD             reduce using rule 3 (grau1 -> grau1 SUB grau2 .)
+    SUB             reduce using rule 3 (grau1 -> grau1 SUB grau2 .)
+    $end            reduce using rule 3 (grau1 -> grau1 SUB grau2 .)
+    FP              reduce using rule 3 (grau1 -> grau1 SUB grau2 .)
+    MULT            shift and go to state 8
+    DIV             shift and go to state 9
+
+
+state 13
+
+    (5) grau2 -> grau2 MULT grau3 .
+
+    MULT            reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+    DIV             reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+    ADD             reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+    SUB             reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+    $end            reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+    FP              reduce using rule 5 (grau2 -> grau2 MULT grau3 .)
+
+
+state 14
+
+    (6) grau2 -> grau2 DIV grau3 .
+
+    MULT            reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+    DIV             reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+    ADD             reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+    SUB             reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+    $end            reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+    FP              reduce using rule 6 (grau2 -> grau2 DIV grau3 .)
+
+
+state 15
+
+    (8) grau3 -> AP grau1 FP .
+
+    MULT            reduce using rule 8 (grau3 -> AP grau1 FP .)
+    DIV             reduce using rule 8 (grau3 -> AP grau1 FP .)
+    ADD             reduce using rule 8 (grau3 -> AP grau1 FP .)
+    SUB             reduce using rule 8 (grau3 -> AP grau1 FP .)
+    $end            reduce using rule 8 (grau3 -> AP grau1 FP .)
+    FP              reduce using rule 8 (grau3 -> AP grau1 FP .)
+

@@ -1,19 +1,60 @@
-# Analisador lexico
+# Analisador Léxico para Structured querie Language
 
-Programa python desenvolvido em contexto de Processamento de linguagens onde utilizamos de conhecimentos de **Expressões regulares** e **Tokens** para desenvolver um analisidor de **linguagem de query**, convertendo elementos básicos.
+## Introdução  
+Este relatório apresenta um analisador léxico desenvolvido
+em Python utilizando a biblioteca **PLY.LEX**. O objetivo
+do programa é processar um arquivo de entrada contendo
+código escrito em uma querie structured language e
+classificar os tokens presentes no texto.  
 
-## Funcionalidades
-1. **TOKENS**: Ultilizando o ply.lex e suas normas foram definidos os seguintes tokens para classificar a linguagem:
-   1. 'KEYWORD': {'select', 'where', 'limit', 'a'}
-   2. 'VARIABLE': *r'\?[a-zA-Z0-9_]+'*
-   3. 'IDENTIFIER': *r'[a-zA-Z]+:[a-zA-Z0-9_]+'*
-   4. 'STRING': *r'\"[^\"]*\"(@[a-zA-Z]+)?'*
-   5. 'NUMBER': *r'\d+'*
-   6. 'SYMBOL': *r'[{}.@:]'*
-2. **Defaults**: Por defeito o ply.lex ultiliza alguns tokens para tratar outros tipos de caracteres que possam aparecer no nosso alfabeto:
-   1. 'IGNORE': *' \t'*
-   2. 'NEWLINE': *'\n'*
+## Funcionamento  
+O analisador reconhece seis tipos de tokens:  
+  - **KEYWORD**: Palavras-chave da linguagem (`select`, `where`, `limit`, `a`).  
+  - **VARIABLE**: Variáveis iniciadas por `?`.  
+  - **IDENTIFIER**: Identificadores no formato `prefixo:nome`.  
+  - **STRING**: Sequências entre aspas opcionais com marcação de idioma.  
+  - **NUMBER**: Sequências numéricas.  
+  - **SYMBOL**: Caracteres especiais `{ } . @ :`.  
 
+## Testes  
 
-## Uso
-O script lê um arquivo `.txt`, processa os elementos e imprimi na tela cada token com seus respectivos elementos encontrados
+### Teste 1  
+**Entrada:**  
+```
+select ?var where { ?var a "Texto"@en . }
+```
+**Saída Esperada:**  
+```
+{
+  "KEYWORD": ["select", "where", "a"],
+  "VARIABLE": ["?var"],
+  "IDENTIFIER": [],
+  "STRING": ["\"Texto\"@en"],
+  "NUMBER": [],
+  "SYMBOL": ["{", "}", "."]
+}
+```
+
+---
+
+### Teste 2  
+**Entrada:**  
+```
+limit 10 ?x :value "Example" .
+```
+
+**Saída Esperada:**  
+```
+{
+  "KEYWORD": ["limit"],
+  "VARIABLE": ["?x"],
+  "IDENTIFIER": [":value"],
+  "STRING": ["\"Example\""],
+  "NUMBER": [10],
+  "SYMBOL": ["."]
+}
+```
+
+## Conclusão  
+O analisador léxico foi implementado com sucesso, identificando e classificando corretamente os tokens da linguagem definida. Os testes demonstram que o programa pode processar diferentes entradas e extrair informações úteis para futuras análises. A estrutura modular do código permite fácil adaptação para outras linguagens ou regras léxicas.  
+```

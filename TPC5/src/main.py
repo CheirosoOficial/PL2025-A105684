@@ -1,6 +1,6 @@
 import ply.lex as lex
 import re
-import machine as mac
+import maquina_vendas_logica as mac
 
 
 ### Tokens e estados do meu alfabeto
